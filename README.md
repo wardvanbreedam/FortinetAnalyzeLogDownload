@@ -16,6 +16,7 @@ Doel: dezelfde scripts die gebruikt zijn voor een uitvoering publiek en herbruik
 brew install node
 ```
 
+
 2. Initialiseer en installeer dependencies:
 
 ```bash
