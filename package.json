@@ -1,0 +1,18 @@
+{
+  "name": "FortinetAnalyzeLogDownload",
+  "version": "0.1.0",
+  "description": "Bulk export & retention tooling for FortiGate Cloud / FortiAnalyzer raw logs",
+  "main": "bulk-download3.mjs",
+  "type": "module",
+  "scripts": {
+    "prepare": "npx playwright install",
+    "capture": "node capture-templates.mjs",
+    "start": "node bulk-download3.mjs"
+  },
+  "keywords": ["fortigate", "forticloud", "logs", "playwright"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "playwright": "^1.40.0"
+  }
+}

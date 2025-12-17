@@ -1,0 +1,144 @@
+Handleiding – Bulk export & retentie van FortiGate Cloud / FortiAnalyzer logs
+
+Doel van dit document
+Deze handleiding beschrijft een herbruikbare en audit-proof methodiek om logbestanden uit FortiGate Cloud
+of FortiAnalyzer (cloud) te exporteren en te bewaren wanneer deze diensten worden stopgezet, bijvoorbeeld
+bij migratie naar een ander logging- of SIEM-platform.
+
+De methodiek creëert een reproduceerbaar bewijsspoor (integriteit, volledigheid en traceerbaarheid).
+
+================================================================================
+
+1. Scope en uitgangspunten
+
+Deze procedure is van toepassing wanneer:
+- FortiGate Cloud of FortiAnalyzer (cloud) logging wordt stopgezet
+- Er een wettelijke of contractuele bewaarplicht geldt (bv. 6–12 maanden)
+- Logs ongewijzigd en verifieerbaar moeten worden bewaard
+
+Principes:
+- Logs worden bewaard in hun originele formaat (.log.gz)
+- Er worden geen inhoudelijke wijzigingen aangebracht
+- Integriteit wordt aangetoond via cryptografische hashes (SHA-256)
+
+================================================================================
+
+2. Benodigdheden
+
+Technisch:
+- macOS systeem
+- Internettoegang tot portal.eu.fortigate.forticloud.com
+- FortiCloud account met toegang tot Analytics / Log Archives
+- Voldoende vrije schijfruimte
+
+Operationeel:
+- Tijd (typisch 1–3 uur)
+- Informatie over logperiode en bewaarplicht
+
+================================================================================
+
+3. Installatie van Homebrew
+
+/ bin / bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+Controle:
+brew --version
+
+================================================================================
+
+4. Installatie van vereiste tools
+
+brew install node
+
+Controle:
+node --version
+npm --version
+
+================================================================================
+
+5. Werkstructuur
+
+/Volumes/BU_Forticloud/
+ └── <KLANTNAAM>/
+     └── fgtcloud-rawlogs/
+         ├── downloads/
+         ├── pw-profile/
+         ├── state.json
+         ├── templates.json
+         └── scripts/
+
+================================================================================
+
+6. Installatie Playwright
+
+npm init -y
+npm install playwright
+npx playwright install
+
+================================================================================
+
+7. Capturen van API templates
+
+node capture-templates.mjs
+
+Acties:
+- Log in (MFA)
+- Ga naar Analytics → Log Archives → Raw Logs
+- Stel periode in
+- Vernieuw pagina
+
+Resultaat: templates.json
+
+================================================================================
+
+8. Bulk download
+
+node bulk-download3.mjs
+
+Laat het Chromium venster open tot de UI volledig geladen is.
+
+================================================================================
+
+9. Eindcontrole
+
+ls -1 *.gz | wc -l
+ls -1 *.gz | sort | uniq -d
+
+================================================================================
+
+10. Integriteitscontrole
+
+shasum -a 256 *.gz > manifest-sha256.txt
+
+================================================================================
+
+11. Bewaring
+
+- Bewaar logs op write-protected opslag indien mogelijk
+- Maak een offline kopie
+- Bewaar hash-manifest samen met logs
+
+================================================================================
+
+12. Invulformulier
+
+Klantnaam:
+Ondernemingsnummer:
+Contactpersoon:
+FortiGate / FortiAnalyzer ID(s):
+
+Uitgevoerd door:
+Organisatie:
+Datum uitvoering:
+Reden export:
+
+Logperiode:
+Aantal bestanden:
+Totale grootte:
+Opslaglocatie:
+
+SHA-256 manifest:
+Verificatie uitgevoerd door:
+
+Handtekening uitvoerder:
+Handtekening klant:

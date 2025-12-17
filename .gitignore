@@ -1,0 +1,9 @@
+node_modules/
+pw-profile/
+downloads/
+state.json
+templates.json
+last-*.txt
+*.log.gz
+.env
+.DS_Store
