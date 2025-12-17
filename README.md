@@ -59,5 +59,3 @@ git remote add origin git@github.com:<your-username>/FortinetAnalyzeLogDownload.
 git branch -M main
 git push -u origin main
 ```
-
-Wil je dat ik behalf van jou de repo aanmaak en push? Lever dan een GitHub Personal Access Token met `repo` scope of geef toestemming om via SSH te pushen vanaf deze machine.
