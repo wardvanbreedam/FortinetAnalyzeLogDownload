@@ -38,5 +38,3 @@ npm run capture
 npm start
 ```
 
-Let op: `pw-profile/` bevat browserprofiel (cookies/MFA) en wordt standaard genegeerd in `.gitignore`.
-
