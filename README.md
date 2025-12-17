@@ -40,22 +40,3 @@ npm start
 
 Let op: `pw-profile/` bevat browserprofiel (cookies/MFA) en wordt standaard genegeerd in `.gitignore`.
 
-## CI (GitHub Actions)
-Er is een eenvoudige workflow in `.github/workflows/node-ci.yml` die Node instelt, dependencies installeert en `npm test` draait (als aanwezig). Voor Playwright wordt `npx playwright install` uitgevoerd.
-
-## Licentie
-MIT — vrij te gebruiken.
-
-## Push naar GitHub
-Maak een publieke repo en push lokaal:
-
-```bash
-cd ~/Downloads/FortinetAnalyzeLogDownload
-git init
-git add .
-git commit -m "Initial import: FortinetAnalyzeLogDownload"
-# maak repo op GitHub (naam: FortinetAnalyzeLogDownload) en voeg remote toe
-git remote add origin git@github.com:<your-username>/FortinetAnalyzeLogDownload.git
-git branch -M main
-git push -u origin main
-```
